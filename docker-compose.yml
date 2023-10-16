@@ -1,0 +1,28 @@
+services:
+  desktop:
+    build:
+      args:
+        - FROM_TAG=23.09-py3
+      context: .
+    container_name: cuda-desktop
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+              count: all
+              driver: nvidia
+    image: ivangabriele/cuda-desktop:latest
+    ipc: host
+    logging:
+      driver: json-file
+      options:
+        max-file: "1"
+        max-size: "10m"
+    ports:
+      - 5901:5901
+    shm_size: 1024M
+    stdin_open: true
+    tty: true
+    ulimits:
+      stack: 67108864
