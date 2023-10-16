@@ -55,8 +55,6 @@ ssh -L 59000:localhost:[PUBLIC_5901_PORT_BINDING] -C -N -l root [YOUR_SERVER_IP]
 VNC Server is listening on port `5901` in this image but you or your PaaS may bind this port to another public one.
 `[PUBLIC_5901_PORT_BINDING]` should be replaced by the public port binded to the container's `5901` port.
 
-```sh
-
 Check [this DigitalOcean's tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04#step-3-connecting-to-the-vnc-desktop-securely) for more details.
 
 ## Deployment
