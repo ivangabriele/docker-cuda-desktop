@@ -73,4 +73,4 @@ Check [this DigitalOcean's tutorial](https://www.digitalocean.com/community/tuto
 [link-docker]: https://hub.docker.com/r/ivangabriele/cuda-desktop
 [link-github]: https://github.com/ivangabriele/docker-cuda-desktop
 [link-github-actions]: https://github.com/ivangabriele/docker-cuda-desktop/actions/workflows/main.yml
-[link-runpod]: https://runpod.io/gsc?template=sihvefhjru&ref=s0k66ov1
+[link-runpod]: https://runpod.io/gsc?template=fc1g5zbii8&ref=s0k66ov1
