@@ -4,24 +4,28 @@
 [![img-docker]][link-docker]
 [![img-runpod]][link-runpod]
 
-Ubuntu PyTorch CUDA Docker image with KDE Plasma Desktop & VNC. Ideal for LLM & Deep Learning remote work.
+Ubuntu PyTorch CUDA Docker image with KDE PLasma Desktop & VNC. Ideal for LLM & Deep Learning remote work.
+
+> [!WARNING]  
+> This is a work in progress.
 
 ## Base
 
-[CUDA / PyTorch](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch).
+Based on [PyTorch](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch) (including Ubuntu & CUDA).
 
 ## Content
 
 - KDE Plasma Desktop
-- VNC Server
-- Visual Studio Code
+- VNC Server (port `5900`)
+<!-- - Visual Studio Code -->
+<!-- - Firefox -->
 
 ## Tags
 
 Pytorch tag as per [their official documentation](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch/tags):
 
-- `latest`, `23.09-py3`
-- Other tags coming soon.
+- PyTorch 23.09-py3
+  - `latest`
 
 ## Environment Variables
 
@@ -38,7 +42,7 @@ Install VNC client on your host machine.
 #### Debian/Ubuntu
 
 ```sh
-sudo apt install tigervnc-viewer
+sudo apt install vinagre
 ```
 
 ### Secure VNC Connection
@@ -62,6 +66,13 @@ Check [this DigitalOcean's tutorial](https://www.digitalocean.com/community/tuto
 ### RunPod
 
 [![img-runpod]][link-runpod]
+
+## Thanks
+
+- [@ms-jpq](https://github.com/ms-jpq)
+  for [ms-jpq/kde-in-docker](https://github.com/ms-jpq/kde-in-docker)
+- [Selkies](https://github.com/selkies-project)
+  for [ms-jpq/kde-in-docker](https://github.com/selkies-project/docker-nvidia-glx-desktop)
 
 ---
 

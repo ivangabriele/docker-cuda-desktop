@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+
+echo FAKE start_kdeinit_wrapper FAKE

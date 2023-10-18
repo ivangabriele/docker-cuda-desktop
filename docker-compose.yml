@@ -1,9 +1,10 @@
 services:
-  desktop:
+  kde:
     build:
       args:
         - FROM_TAG=23.09-py3
       context: .
+      dockerfile: ./kde/Dockerfile
     container_name: cuda-desktop
     deploy:
       resources:
@@ -12,6 +13,8 @@ services:
             - capabilities: [gpu]
               count: all
               driver: nvidia
+    environment:
+      VNC_PASSWORD: "password"
     image: ivangabriele/cuda-desktop:latest
     ipc: host
     logging:
@@ -20,7 +23,7 @@ services:
         max-file: "1"
         max-size: "10m"
     ports:
-      - 5901:5901
+      - 5900:5900
     shm_size: 1024M
     stdin_open: true
     tty: true
