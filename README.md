@@ -78,7 +78,7 @@ Check [this DigitalOcean's tutorial](https://www.digitalocean.com/community/tuto
 - [@ms-jpq](https://github.com/ms-jpq)
   for [ms-jpq/kde-in-docker](https://github.com/ms-jpq/kde-in-docker)
 - [Selkies](https://github.com/selkies-project)
-  for [ms-jpq/kde-in-docker](https://github.com/selkies-project/docker-nvidia-glx-desktop)
+  for [selkies-project/docker-nvidia-glx-desktop](https://github.com/selkies-project/docker-nvidia-glx-desktop)
 
 ---
 
