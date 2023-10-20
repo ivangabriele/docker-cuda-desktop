@@ -9,6 +9,9 @@ Ubuntu PyTorch CUDA Docker image with KDE PLasma Desktop & VNC. Ideal for LLM & 
 > [!WARNING]  
 > This is a work in progress.
 
+> [!IMPORTANT]  
+> Run `sudo ~/Desktop/init.sh` (in Kitty) when you start it for the first time.
+
 ## Base
 
 Based on [PyTorch](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch) (including Ubuntu & CUDA).
