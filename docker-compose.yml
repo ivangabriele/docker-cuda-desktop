@@ -1,11 +1,10 @@
 services:
-  kde:
+  server:
     build:
       args:
         - FROM_TAG=23.09-py3
       context: .
-      dockerfile: ./kde/Dockerfile
-    container_name: cuda-desktop
+    container_name: cuda-desktop-server
     deploy:
       resources:
         reservations:
@@ -14,7 +13,7 @@ services:
               count: all
               driver: nvidia
     environment:
-      VNC_PASSWORD: "password"
+      USER_PASSWORD: password
     image: ivangabriele/cuda-desktop:latest
     ipc: host
     logging:

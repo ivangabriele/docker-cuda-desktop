@@ -17,8 +17,14 @@ Based on [PyTorch](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch
 
 - KDE Plasma Desktop
 - VNC Server (port `5900`)
-<!-- - Visual Studio Code -->
-<!-- - Firefox -->
+
+and:
+
+- Falkon (default browser)
+- Kitty
+- Sublime Text
+- Visual Studio Code (must be run with `--no-sandbox` flag)
+- zsh
 
 ## Tags
 
@@ -29,7 +35,7 @@ Pytorch tag as per [their official documentation](https://catalog.ngc.nvidia.com
 
 ## Environment Variables
 
-- `VNC_PASSWORD`: Password for VNC connection. Default: `password`.
+- `USER_PASSWORD`: Password for both `sudo` commands and VNC connection. Default: `password`.
 
 ## Usage
 
