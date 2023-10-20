@@ -3,7 +3,7 @@ set -e
 
 # Set VNC Server password
 mkdir /home/ubuntu/.vnc
-echo "${USER_PASSWORD}" | vncpasswd -f > /home/ubuntu/.vnc/passwd
+echo "${VNC_PASSWORD}" | vncpasswd -f > /home/ubuntu/.vnc/passwd
 chmod 600 /home/ubuntu/.vnc/passwd
 
 # Kill old VNC Server if still running

@@ -13,7 +13,7 @@ services:
               count: all
               driver: nvidia
     environment:
-      USER_PASSWORD: password
+      VNC_PASSWORD: password
     image: ivangabriele/cuda-desktop:latest
     ipc: host
     logging:

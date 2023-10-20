@@ -35,7 +35,7 @@ Pytorch tag as per [their official documentation](https://catalog.ngc.nvidia.com
 
 ## Environment Variables
 
-- `USER_PASSWORD`: Password for both `sudo` commands and VNC connection. Default: `password`.
+- `VNC_PASSWORD`: Password for VNC connection. Default: `password`.
 
 ## Usage
 

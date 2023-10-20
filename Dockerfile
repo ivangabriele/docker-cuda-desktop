@@ -43,6 +43,7 @@ RUN apt-get install -y \
 EXPOSE 5900
 
 ENV DISPLAY=:0
+ENV VNC_PASSWORD=password
 ENV VNC_SCREEN_SIZE=1920x1080
 
 RUN apt-get install -y \
