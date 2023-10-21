@@ -13,7 +13,8 @@ services:
               count: all
               driver: nvidia
     environment:
-      VNC_PASSWORD: password
+      VNC_PASSWORD: "password"
+      VNC_SCREEN_SIZE: "1920x1080"
     image: ivangabriele/cuda-desktop:latest
     ipc: host
     logging:

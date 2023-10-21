@@ -1,16 +1,14 @@
-# CUDA Desktop Docker Image
+# Docker Image :: Ubuntu KDE Plasma Desktop with PyTorch, CUDA & VNC
 
 [![img-github]][link-github]
 [![img-docker]][link-docker]
 [![img-runpod]][link-runpod]
 
-Ubuntu PyTorch CUDA Docker image with KDE PLasma Desktop & VNC. Ideal for LLM & Deep Learning remote work.
+Ideal for LLM & Deep Learning remote work.
 
-> [!WARNING]  
-> This is a work in progress.
+## Screenshot
 
-> [!IMPORTANT]  
-> Run `sudo ~/Desktop/init.sh` (in Kitty) when you start it for the first time.
+![CUDA Desktop](https://raw.githubusercontent.com/ivangabriele/docker-cuda-desktop/main/screenshot.png)
 
 ## Base
 
@@ -23,11 +21,11 @@ Based on [PyTorch](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch
 
 and:
 
-- Falkon (default browser)
-- Kitty
+- Firefox (ESR)
+- Kitty (terminal)
 - Sublime Text
 - Visual Studio Code (must be run with `--no-sandbox` flag)
-- zsh
+- zsh (with oh-my-zsh)
 
 ## Tags
 
@@ -39,6 +37,7 @@ Pytorch tag as per [their official documentation](https://catalog.ngc.nvidia.com
 ## Environment Variables
 
 - `VNC_PASSWORD`: Password for VNC connection. Default: `password`.
+- `VNC_SCREEN_SIZE`: Screen size. Default: `1920x1080`.
 
 ## Usage
 
@@ -62,11 +61,11 @@ sudo apt install vinagre
 > and then tell your VNC client to connect using that tunnel rather than making a direct connection.
 
 ```sh
-ssh -L 59000:localhost:[PUBLIC_5901_PORT_BINDING] -C -N -l root [YOUR_SERVER_IP]
+ssh -L 5900:localhost:[PUBLIC_5900_TCP_PORT_BINDING] -C -N -l root [YOUR_SERVER_IP]
 ```
 
-VNC Server is listening on port `5901` in this image but you or your PaaS may bind this port to another public one.
-`[PUBLIC_5901_PORT_BINDING]` should be replaced by the public port binded to the container's `5901` port.
+VNC Server is listening on port `5900` in this image but you or your PaaS may bind this port to another public one.
+`[PUBLIC_5900_TCP_PORT_BINDING]` should be replaced by the public port binded to the container's `5900` port.
 
 Check [this DigitalOcean's tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04#step-3-connecting-to-the-vnc-desktop-securely) for more details.
 

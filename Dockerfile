@@ -31,11 +31,163 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 
 # ----------------------------------------------------------
-# KDE Desktop Plasma
+# Global Applications & Utilities
 
 RUN apt-get install -y \
+  alsa-base \
+  alsa-utils \
+  apt-transport-https \
+  apt-utils \
+  build-essential \
+  bzip2 \
+  ca-certificates \
+  cups-browsed \
+  cups-bsd \
+  cups-common \
+  cups-filters \
+  cups-pdf \
   dbus-x11 \
-  plasma-desktop
+  debconf-kde-helper \
+  dolphin \
+  file \
+  fonts-dejavu \
+  fonts-freefont-ttf \
+  fonts-hack \
+  fonts-liberation \
+  fonts-noto \
+  fonts-noto-cjk \
+  fonts-noto-cjk-extra \
+  fonts-noto-color-emoji \
+  fonts-noto-extra \
+  fonts-noto-hinted \
+  fonts-noto-mono \
+  fonts-noto-ui-extra \
+  fonts-noto-unhinted \
+  fonts-opensymbol \
+  fonts-symbola \
+  fonts-ubuntu \
+  gcc \
+  gnupg \
+  gzip \
+  i965-va-driver-shaders \
+  intel-media-va-driver-non-free \
+  jq \
+  kdeadmin \
+  kde-config-fcitx \
+  kde-config-gtk-style \
+  kde-config-gtk-style-preview \
+  kdeconnect \
+  kdegraphics-thumbnailers \
+  kde-spectacle \
+  kmod \
+  lame \
+  less \
+  libavcodec-extra \
+  libc6-dev \
+  libdbus-c++-1-0v5 \
+  libdbusmenu-glib4 \
+  libdbusmenu-gtk3-4 \
+  libegl1 \
+  libegl1-mesa-dev \
+  libelf-dev \
+  libgail-common \
+  libgdk-pixbuf2.0-bin \
+  libgl1 \
+  libgl1-mesa-dev \
+  libgles2 \
+  libgles2-mesa-dev \
+  libglu1 \
+  libglvnd-dev \
+  libglvnd0 \
+  libglx0 \
+  libgtk-3-bin \
+  libgtk2.0-bin \
+  libkf5baloowidgets-bin \
+  libkf5dbusaddons-bin \
+  libkf5iconthemes-bin \
+  libkf5kdelibs4support5-bin \
+  libkf5khtml-bin \
+  libkf5parts-plugins \
+  libpci3 \
+  libpulse0 \
+  libqt5multimedia5-plugins \
+  librsvg2-common \
+  libsm6 \
+  libva2 \
+  libvulkan-dev \
+  libx11-6 \
+  libxau6 \
+  libxcb1 \
+  libxdmcp6 \
+  libxext6 \
+  libxrandr-dev \
+  libxtst6 \
+  libxv1 \
+  make \
+  net-tools \
+  packagekit-tools \
+  pkg-config \
+  polkit-kde-agent-1 \
+  pulseaudio \
+  qapt-deb-installer \
+  qml-module-org-kde-runnermodel \
+  qml-module-org-kde-qqc2desktopstyle \
+  qml-module-qtgraphicaleffects \
+  qml-module-qtquick-xmllistmodel \
+  qt5-gtk-platformtheme \
+  qt5-image-formats-plugins \
+  qt5-style-plugins \
+  qtspeech5-flite-plugin \
+  qtvirtualkeyboard-plugin \
+  snapd \
+  software-properties-common \
+  software-properties-qt \
+  ssl-cert \
+  sudo \
+  supervisor \
+  tzdata \
+  x11-apps \
+  x11-utils \
+  x11-xkb-utils \
+  x11-xserver-utils \
+  xauth \
+  xbitmaps \
+  xdg-desktop-portal-kde \
+  xdg-user-dirs \
+  xdg-user-dirs \
+  xdg-utils \
+  xfonts-base \
+  xfonts-scalable \
+  xinit \
+  xkb-data \
+  xorg \
+  xserver-xorg-input-all \
+  xserver-xorg-input-wacom \
+  xserver-xorg-video-all \
+  xserver-xorg-video-intel \
+  xserver-xorg-video-qxl \
+  xsettingsd \
+  xz-utils \
+  zsh
+
+# Firefox ESR
+RUN add-apt-repository ppa:mozillateam/ppa && \
+  apt-get update && \
+  apt-get install -y firefox-esr
+
+# Make Falkon the default browser
+RUN update-alternatives --set x-www-browser /usr/bin/firefox-esr
+
+# ----------------------------------------------------------
+# KDE Plasma Desktop
+
+RUN apt-get install -y plasma-desktop
+
+# Fix KDE startup permissions issues in containers
+RUN cp -f /usr/lib/x86_64-linux-gnu/libexec/kf5/start_kdeinit /tmp/ && \
+  rm -f /usr/lib/x86_64-linux-gnu/libexec/kf5/start_kdeinit && \
+  cp -r /tmp/start_kdeinit /usr/lib/x86_64-linux-gnu/libexec/kf5/start_kdeinit && \
+  rm -f /tmp/start_kdeinit
 
 # ----------------------------------------------------------
 # VNC Server
@@ -49,28 +201,6 @@ ENV VNC_SCREEN_SIZE=1920x1080
 RUN apt-get install -y \
   tigervnc-standalone-server \
   tigervnc-xorg-extension
-
-# ----------------------------------------------------------
-# OS Applications & Utilities
-
-RUN apt-get install -y \
-  apt-transport-https \
-  apt-utils \
-  build-essential \
-  ca-certificates \
-  dolphin \
-  falkon \
-  gnupg \
-  make \
-  snapd \
-  software-properties-common \
-  ssl-cert \
-  sudo \
-  tzdata \
-  zsh
-
-# Make Falkon the default browser
-RUN update-alternatives --set x-www-browser /usr/bin/falkon
 
 # ==============================================================================
 # FINAL
@@ -90,7 +220,6 @@ RUN rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -g 1000 ubuntu && \
   useradd -ms /bin/bash ubuntu -u 1000 -g 1000 && \
-  # `ssl-cert` group?
   usermod -a -G adm,audio,cdrom,dialout,dip,fax,floppy,input,lp,plugdev,pulse-access,ssl-cert,sudo,tape,tty,video,voice ubuntu && \
   echo "ubuntu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
   chown ubuntu:ubuntu /home/ubuntu && \
@@ -149,19 +278,29 @@ RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor 
   sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' && \
   rm -f packages.microsoft.gpg && \
   sudo apt-get update && \
-  sudo apt-get install -y code
-
-# ------------------------------------------------------------------------------
-# Clean
-
-# RUN apt autoremove -y && \
-#   sudo apt clean && \
-#   rm -r /_install
+  sudo apt-get install -y code && \
+  sed 's~Exec=/usr/share/code/code~Exec=/usr/share/code/code --no-sandbox~' /usr/share/applications/code.desktop \
+  | sudo tee /usr/share/applications/code.desktop > /dev/null
 
 # ------------------------------------------------------------------------------
 # Boot
 
-COPY ./entrypoint.sh /home/ubuntu/entrypoint.sh
-COPY ./init.sh /home/ubuntu/Desktop/init.sh
+# Fix `QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'` error
+RUN sudo mkdir -p /run/user/1000 && \
+  sudo chown -R ubuntu:ubuntu /run/user/1000 && \
+  sudo chmod -R 700 /run/user/1000
+ENV XDG_RUNTIME_DIR=/run/user/1000
 
-ENTRYPOINT ["/home/ubuntu/entrypoint.sh"]
+# Fix `/usr/bin/xauth:  file /home/ubuntu/.Xauthority does not exist` error
+RUN touch /home/ubuntu/.Xauthority
+
+# COPY ./etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+COPY ./home/ubuntu/* /home/ubuntu
+RUN cat /home/ubuntu/.zshrc.complement >> /home/ubuntu/.zshrc
+# Make zsh the default shell
+RUN sudo chsh -s $(which zsh) $(whoami)
+
+COPY ./entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
