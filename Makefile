@@ -1,4 +1,4 @@
-.PHONY: clean kill
+.PHONY: bash build clean kill push start
 
 bash:
 	docker compose run server /bin/bash
