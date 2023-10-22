@@ -41,33 +41,7 @@ Pytorch tag as per [their official documentation](https://catalog.ngc.nvidia.com
 
 ## Usage
 
-To connect to the container's desktop, you can use VNC.
-
-### VNC Client
-
-Install VNC client on your host machine.
-
-#### Debian/Ubuntu
-
-```sh
-sudo apt install vinagre
-```
-
-### Secure VNC Connection
-
-> [!IMPORTANT]  
-> VNC itself doesn’t use secure protocols when connecting.
-> To securely connect to your server, you’ll establish an SSH tunnel
-> and then tell your VNC client to connect using that tunnel rather than making a direct connection.
-
-```sh
-ssh -L 5900:localhost:[PUBLIC_5900_TCP_PORT_BINDING] -C -N -l root [YOUR_SERVER_IP]
-```
-
-VNC Server is listening on port `5900` in this image but you or your PaaS may bind this port to another public one.
-`[PUBLIC_5900_TCP_PORT_BINDING]` should be replaced by the public port binded to the container's `5900` port.
-
-Check [this DigitalOcean's tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04#step-3-connecting-to-the-vnc-desktop-securely) for more details.
+To connect to the container's desktop, you can use any VNC client.
 
 ## Deployment
 
