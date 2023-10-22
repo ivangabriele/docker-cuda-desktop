@@ -4,6 +4,14 @@ set -e
 # ------------------------------------------------------------------------------
 # Functions
 
+sync_backup() {
+  while true; do
+    echo "[CUDA Desktop] Syncing /home/ubuntu to /volumes/home_ubuntu_backup..."
+    rsync -a --delete /home/ubuntu/ /volumes/home_ubuntu_backup/
+    sleep 60
+  done
+}
+
 wait_countdown() {
   local seconds=$1
   for ((i=seconds; i>=1; i--)); do
@@ -16,6 +24,27 @@ wait_countdown() {
 # Shell
 
 source /home/ubuntu/.bashrc
+
+# ------------------------------------------------------------------------------
+# Backup Volume
+
+if [ -d "/volumes/home_ubuntu_backup" ]; then
+  sudo chown -R ubuntu:ubuntu /volumes/home_ubuntu_backup
+  sudo chmod -R 755 /volumes/home_ubuntu_backup
+
+  # Check if the volume is empty
+  if [ -z "$(ls -A /volumes/home_ubuntu_backup)" ]; then
+    # If it's empty, sync /home/ubuntu to /volumes/home_ubuntu_backup
+    echo "[CUDA Desktop] Initializing backup volume with data from /home/ubuntu..."
+    rsync -a /home/ubuntu/ /volumes/home_ubuntu_backup/
+  else
+    # If it's not empty, restore contents into /home/ubuntu
+    echo "[CUDA Desktop] Restoring data into /home/ubuntu from backup volume..."
+    rsync -a /volumes/home_ubuntu_backup/ /home/ubuntu/
+  fi
+
+  sync_backup &
+fi
 
 # ------------------------------------------------------------------------------
 # D-Bus

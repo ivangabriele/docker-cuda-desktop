@@ -10,21 +10,24 @@ Ideal for LLM & Deep Learning remote work.
 
 ![CUDA Desktop](https://raw.githubusercontent.com/ivangabriele/docker-cuda-desktop/main/screenshot.png)
 
-## Base
-
-Based on [PyTorch](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch) (including Ubuntu & CUDA).
-
 ## Content
 
+### Base
+
+- [PyTorch](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch) (base image including Ubuntu & CUDA)
 - KDE Plasma Desktop
 - VNC Server (port `5900`)
 
-and:
+### Main Applications
 
 - Firefox (ESR)
 - Kitty (terminal)
 - Sublime Text
 - Visual Studio Code (must be run with `--no-sandbox` flag)
+
+### Nice to Have
+
+- Fira Code (monospace font)
 - zsh (with oh-my-zsh)
 
 ## Tags
@@ -60,6 +63,17 @@ cuda-desktop-server  | Plasma Shell startup completed
 ### RunPod
 
 [![img-runpod]][link-runpod]
+
+> [!NOTE]  
+> You can create and attach a Storage Network Volume to your RunPod pod
+> to automatically sync and persist your `/home/ubuntu` directory between deployments.
+
+### Backup Volume in Deployment
+
+When deploying your container, you can also attach a shared storage as a volume for backup.
+
+Simply mount your desired backup directory to `/volumes/home_ubuntu_backup`` in your Docker run command
+or Docker composer file. It will be automatically retored (on subsequent boots) and then synced each minute.
 
 ## Thanks
 

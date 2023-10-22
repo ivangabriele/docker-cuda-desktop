@@ -29,3 +29,9 @@ services:
     tty: true
     ulimits:
       stack: 67108864
+    volumes:
+      - ./.volumes/home_ubuntu_backup:/volumes/home_ubuntu_backup
+
+volumes:
+  home_ubuntu_backup:
+    driver: local

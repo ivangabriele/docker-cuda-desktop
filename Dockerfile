@@ -139,12 +139,14 @@ RUN apt-get install -y \
   qt5-style-plugins \
   qtspeech5-flite-plugin \
   qtvirtualkeyboard-plugin \
+  rsync \
   snapd \
   software-properties-common \
   software-properties-qt \
   ssl-cert \
   sudo \
   supervisor \
+  systemd \
   tzdata \
   x11-apps \
   x11-utils \
@@ -221,18 +223,11 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN groupadd -g 1000 ubuntu && \
   useradd -ms /bin/bash ubuntu -u 1000 -g 1000 && \
   usermod -a -G adm,audio,cdrom,dialout,dip,fax,floppy,input,lp,plugdev,pulse-access,ssl-cert,sudo,tape,tty,video,voice ubuntu && \
+  # Ensure sudo group users are not asked for a password when using sudo command by ammending sudoers file
   echo "ubuntu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
   chown ubuntu:ubuntu /home/ubuntu && \
   echo "ubuntu:${USER_PASSWORD}" | chpasswd && \
   ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" > /etc/timezone
-
-# Create user and disable both password and gecos for later
-# https://askubuntu.com/a/1195288/635348
-# RUN adduser --disabled-password --gecos '' --home "${HOME}" --ingroup root --shell /bin/bash --uid 6006 "${USER_NAME}"
-# Add user to `sudo` group
-# RUN adduser "${USER_NAME}" sudo
-# Ensure sudo group users are not asked for a password when using sudo command by ammending sudoers file
-# RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER ubuntu
 WORKDIR /home/ubuntu
