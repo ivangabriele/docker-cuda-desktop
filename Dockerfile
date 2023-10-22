@@ -81,6 +81,7 @@ RUN apt-get install -y \
   kde-spectacle \
   kmod \
   lame \
+  locate \
   less \
   libavcodec-extra \
   libc6-dev \
