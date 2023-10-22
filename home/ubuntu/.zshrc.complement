@@ -1,3 +1,4 @@
+
 # Alias definitions
 
 if [ -f ~/.bash_aliases ]; then

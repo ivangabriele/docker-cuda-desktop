@@ -236,7 +236,8 @@ RUN groupadd -g 1000 ubuntu && \
 
 USER ubuntu
 WORKDIR /home/ubuntu
-# CMD /bin/bash
+
+ENV HOME=/home/ubuntu
 ENV USER=ubuntu
 
 # ------------------------------------------------------------------------------
@@ -297,7 +298,8 @@ RUN touch /home/ubuntu/.Xauthority
 # COPY ./etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 COPY ./home/ubuntu/* /home/ubuntu
-RUN cat /home/ubuntu/.zshrc.complement >> /home/ubuntu/.zshrc
+RUN cat /home/ubuntu/.zshrc.complement >> /home/ubuntu/.zshrc && \
+  rm /home/ubuntu/.zshrc.complement
 # Make zsh the default shell
 RUN sudo chsh -s $(which zsh) $(whoami)
 

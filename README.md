@@ -43,6 +43,18 @@ Pytorch tag as per [their official documentation](https://catalog.ngc.nvidia.com
 
 To connect to the container's desktop, you can use any VNC client.
 
+> [!NOTE]  
+> You will have a wide list of errors during startup but you can ignore them.
+> Simulating a full X server is not an easy task.
+
+Your server will be ready once you see this line in the logs:
+
+```bash
+[...]
+cuda-desktop-server  | Plasma Shell startup completed
+[...]
+```
+
 ## Deployment
 
 ### RunPod
