@@ -72,7 +72,7 @@ cuda-desktop-server  | Plasma Shell startup completed
 
 When deploying your container, you can also attach a shared storage as a volume for backup.
 
-Simply mount your desired backup directory to `/volumes/home_ubuntu_backup`` in your Docker run command
+Simply mount your desired backup directory to `/volumes/home_ubuntu_backup` in your Docker run command
 or Docker composer file. It will be automatically retored (on subsequent boots) and then synced each minute.
 
 ## Thanks
