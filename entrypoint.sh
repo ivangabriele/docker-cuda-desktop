@@ -29,8 +29,8 @@ source /home/ubuntu/.bashrc
 # Backup Volume
 
 if [ -d "/volumes/home_ubuntu_backup" ]; then
-  sudo chown -R ubuntu:ubuntu /volumes/home_ubuntu_backup
-  sudo chmod -R 755 /volumes/home_ubuntu_backup
+  # sudo chown -R ubuntu:ubuntu /volumes/home_ubuntu_backup
+  # sudo chmod -R 755 /volumes/home_ubuntu_backup
 
   # Check if the volume is empty
   if [ -z "$(ls -A /volumes/home_ubuntu_backup)" ]; then
